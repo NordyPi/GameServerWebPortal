@@ -1,6 +1,6 @@
 var http = require('http');
 
-var hostname = 'hahbrug.hopto.org'
+var hostname = 'localhost'
 var port = 80;
 
 var server = http.createServer((req, res) => {
