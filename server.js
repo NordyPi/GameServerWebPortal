@@ -1,7 +1,7 @@
-var http = require('http');
+var https = require('https');
 
-var hostname = 'localhost'
-var port = 80;
+var hostname = 'hahbrug.hopto.org'
+var port = 443;
 
 var server = http.createServer((req, res) => {
     res.statusCode = 200;
