@@ -1,6 +1,6 @@
 var http = require('http');
 
-var hostname = 'hahbrug.hopto.org'
+var host = 'hahbrug.hopto.org'
 var port = 80;
 
 const requestListener = function (req, res) {
