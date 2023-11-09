@@ -1,14 +1,14 @@
-var https = require('https');
+var http = require('http');
 
 var hostname = 'hahbrug.hopto.org'
-var port = 443;
+var port = 80;
 
-var server = https.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World\n');
-  });
+const requestListener = function (req, res) {
+  res.writeHead(200);
+  res.end("My first server!");
+};
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+const server = http.createServer(requestListener);
+server.listen(port, host, () => {
+    console.log(`Server is running on http://${host}:${port}`);
 });
