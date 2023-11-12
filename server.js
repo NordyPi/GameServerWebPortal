@@ -31,9 +31,11 @@ app.post('/login', (req, res) => {
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
+        console.log("found username");
         req.session.user = user;
         res.redirect('/console');
     } else {
+        console.log("didnt find username");
         res.redirect('/');
     }
 });
