@@ -1,0 +1,52 @@
+/*
+#001B2E oxford blue
+#294C60 charcoal
+#ADB6C4 french gray
+#FFEFD3 papaya whip
+#FFC49B peach
+*/
+
+.hero {
+    background-color: #294C60;
+}
+
+#login-button {
+    background-color: #294C60;
+}
+
+#login-form {
+    background-color: #FFEFD3;
+}
+
+#header {
+    background-color: #FFEFD3;
+}
+
+#footer {
+    background-color: #FFEFD3;
+}
+
+.container.mt-5 {
+    background-color: #FFC49B;
+    padding: 10px;
+}
+
+.column {
+    background-color: #001B2E;
+    margin: 20px;
+    padding: 30px;
+}
+
+.title.has-text-centered.section-head {
+    color: white;
+}
+
+.container.game-info {
+    background-color: #001B2E;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.column.is-one-fourth.info {
+    background-color: #FFC49B;
+}

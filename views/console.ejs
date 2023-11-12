@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Head that holds title, links the Bulma styles and my own stylesheet-->
+    <title>Loklin's Webpage</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+    <section class = "section" id="header">
+        <div class = "container has-text-centered">
+            <span class = "title">
+                HahBrug Dedicated Server Manager
+            </span>
+        </div>
+    </section>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-one-third">
+                        <div class = "title has-text-centered section-head">
+                            -- Game Servers --
+                        </div>
+                        <div class="container mt-5">
+                            <h1 class="title">VRising</h1>
+                            <div class="content">
+                                <p><strong>Status:</strong> placeholder</place><span></span></p>
+                                <div class="buttons mt-3">
+                                    <button id="startButton" class="button is-success">Start</button>
+                                    <button id="stopButton" class="button is-danger">Stop</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container mt-5">
+                            <h1 class="title">Valheim</h1>
+                            <div class="content">
+                                <p><strong>Status:</strong> placeholder<span></span></p>
+                                <div class="buttons mt-3">
+                                    <button id="startButton" class="button is-success">Start</button>
+                                    <button id="stopButton" class="button is-danger">Stop</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container mt-5">
+                            <h1 class="title">Minecraft</h1>
+                            <div class="content">
+                                <p><strong>Status:</strong> placeholder<span></span></p>
+                                <div class="buttons mt-3">
+                                    <button id="startButton" class="button is-success">Start</button>
+                                    <button id="stopButton" class="button is-danger">Stop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class = "title has-text-centered section-head">
+                            -- Linux Server System Resources --
+                        </div>
+                        <div class="container mt-5">
+                            <div class = "subtitle">
+                                RAM Usage (placeholder image)
+                            </div>
+                            <img src="/images/ram.png">
+                            <div>
+                                <p><strong>Min:</strong><span>x </span><strong>Max:</strong>x<span></span></p> 
+                            </div>
+                        </div>
+                        <div class="container mt-5">
+                            <div class = "subtitle">
+                                CPU Usage (placeholder image)
+                            </div>
+                            <img src="/images/cpu.png">
+                            <div>
+                                <p><strong>Min:</strong><span>x </span><strong>Max:</strong>x<span></span></p> 
+                            </div>
+                        </div>
+                        <div class="container mt-5">
+                            <div class = "subtitle">
+                                CPU Temperature (placeholder image)
+                            </div>
+                            <img src="/images/temp.png">
+                            <div>
+                                <p><strong>Min:</strong><span>x </span><strong>Max:</strong>x<span></span></p> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <div class="hero-body">
+            <div class="container game-info">
+                <div class = "title has-text-centered section-head">
+                    -- Live Game Stats and Updates --
+                </div>
+                <div class="columns">
+                    <div class="column is-one-fourth info">
+                        <h1 class="subtitle">Live Player Counts (API Implementation)</h1>
+                        <p><strong>VRising:</strong><span> 100</span>
+                        <p><strong>Valheim:</strong><span> 100</span>
+                        <p><strong>Minecraft:</strong><span> 100</span>
+                    </div>
+                    <div class="column is-one-fourth info">
+                        <h1 class="subtitle">VRising Game News (web scraping implementation)</h1>
+                    </div>
+                    <div class="column is-one-fourth info">
+                        <h1 class="subtitle">Valheim Game News (web scraping implementation)</h1>
+                    </div>
+                    <div class="column is-one-fourth info">
+                        <h1 class="subtitle">Minecraft Game News (web scraping implementation)</h1>
+                    </div>
+                </div>
+            </div>
+      </section>
+      <section class = "section" id="footer">
+        <div class = "container has-text-centered">
+            <span class = "subtitle">
+                Developed by Loklin Nord
+            </span>
+        </div>
+    </section>
+</body>
+</html>
