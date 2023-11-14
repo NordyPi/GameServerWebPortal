@@ -23,6 +23,7 @@ const users = JSON.parse(usersData).users;
 const logActivity = (activity, username) => {
     const timestamp = new Date().toISOString();
     const logEntry = `${username} ${activity} at ${timestamp}\n`;
+    console.log(logEntry);
 
     fs.appendFile('user_activity.log', logEntry, (err) => {
         if (err) {
@@ -40,7 +41,6 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
-    console.log(username + ", " + password);
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
@@ -48,7 +48,7 @@ app.post('/login', (req, res) => {
         logActivity('has logged in', username);
         res.redirect('/console');
     } else {
-        console.log("didnt find username");
+        logActivity('attempted to log in with password: ' + password, username);
         res.redirect('/');
     }
 });
