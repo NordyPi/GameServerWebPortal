@@ -19,6 +19,19 @@ app.set('view engine', 'ejs');
 const usersData = fs.readFileSync('credentials.json');
 const users = JSON.parse(usersData).users;
 
+
+const logActivity = (activity, username) => {
+    const timestamp = new Date().toISOString();
+    const logEntry = `${username} ${activity} at ${timestamp}\n`;
+
+    fs.appendFile('user_activity.log', logEntry, (err) => {
+        if (err) {
+            console.error('Error writing to log file:', err);
+        }
+    });
+};
+
+
 // Routes
 app.get('/', (req, res) => {
     res.render('login');
@@ -31,8 +44,8 @@ app.post('/login', (req, res) => {
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
-        console.log("found username");
         req.session.user = user;
+        logActivity('has logged in', username);
         res.redirect('/console');
     } else {
         console.log("didnt find username");
@@ -49,6 +62,8 @@ app.get('/console', (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
+    const username = req.session.user ? req.session.user.username : 'Unknown user';
+    logActivity('has logged out', username);
     req.session.destroy(() => {
         res.redirect('/');
     });
