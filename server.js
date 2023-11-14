@@ -16,10 +16,8 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // Mock user data (replace with pulling from credentials.txt file)
-const users = [
-    { username: 'user1', password: 'password1' },
-    { username: 'user2', password: 'password2' },
-];
+const usersData = fs.readFileSync('credentials.json');
+const users = JSON.parse(usersData).users;
 
 // Routes
 app.get('/', (req, res) => {
@@ -50,7 +48,7 @@ app.get('/console', (req, res) => {
     }
 });
 
-app.post('/logout', (req, res) => {
+app.get('/logout', (req, res) => {
     req.session.destroy(() => {
         res.redirect('/');
     });
