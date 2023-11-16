@@ -5,7 +5,7 @@ const session = require('express-session');
 const fs = require('fs');
 
 const app = express();
-const PORT = 80;
+const PORT = 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -71,5 +71,5 @@ app.get('/logout', (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
+    console.log(`Server is running on port: ${PORT}`);
 });
