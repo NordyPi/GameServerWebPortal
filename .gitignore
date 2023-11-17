@@ -8,6 +8,7 @@ lerna-debug.log*
 .pnpm-debug.log*
 
 credentials.json
+steamkey.json
 package-lock.json
 package.json
 

@@ -2,7 +2,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const axios = require('axios');
 const fs = require('fs');
+
+const apiKeys = fs.readFileSync("steamkey.json", 'utf-8');
+const steamApiKey = JSON.parse(apiKeys).steam_id;
+const valheimAppId = 892970;
+const vrisingAppId = 1604030;
+const valheimApiEndpoint = `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${valheimAppId}&key=${steamApiKey}`;
+const vrisingApiEndpoint = `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${vrisingAppId}&key=${steamApiKey}`;
 
 const app = express();
 const PORT = 3000;
@@ -55,7 +63,18 @@ app.post('/login', (req, res) => {
 
 app.get('/console', (req, res) => {
     if (req.session.user) {
-        res.render('console');
+        axios.get(valheimApiEndpoint)
+            .then(response => {
+                const valheimCurrentPlayers = response.data.response.player_count;
+                console.log(`Current number of players for Valheim: ${numberOfPlayers}`);
+            })
+            .catch(error => {
+                console.error('Error fetching player count:', error.message);
+            });
+        let pageData = {
+            valheimPlayers: valheimCurrentPlayers
+        };
+        res.render('console', pageData);
     } else {
         res.redirect('/');
     }
