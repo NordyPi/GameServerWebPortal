@@ -97,7 +97,7 @@ app.get('/console', async (req, res) => {
 app.post('/run-script', async (req, res) => {
     try {
         // Adjust this command to run your specific shell script
-        const scriptCommand = 'sh /home/minecraft/test_server/start.sh';
+        const scriptCommand = 'sudo sh /home/minecraft/test_server/start.sh';
 
         exec(scriptCommand, (error, stdout, stderr) => {
             if (error) {
