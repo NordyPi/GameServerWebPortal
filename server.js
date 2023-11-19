@@ -97,7 +97,7 @@ app.get('/console', async (req, res) => {
 app.post('/run-script', async (req, res) => {
     try {
         // Adjust this command to run your specific shell script
-        const scriptCommand = 'sh /path/to/your/test.sh';
+        const scriptCommand = 'sh test.sh';
 
         exec(scriptCommand, (error, stdout, stderr) => {
             if (error) {
