@@ -32,7 +32,7 @@
                         <div class="container mt-5">
                             <h1 class="title">VRising</h1>
                             <div class="content">
-                                <p><strong>Status:</strong> placeholder</place><span></span></p>
+                                <p><strong>Status:</strong><span id="vrisingStatus">placeholder</span></p>
                                 <div class="buttons mt-3">
                                     <button id="startVRising" class="button is-success">Start</button>
                                     <button id="stopVRising" class="button is-danger">Stop</button>
@@ -42,7 +42,7 @@
                         <div class="container mt-5">
                             <h1 class="title">Valheim</h1>
                             <div class="content">
-                                <p><strong>Status:</strong> placeholder<span></span></p>
+                                <p><strong>Status:</strong><span id="valheimStatus">placeholder</span></p>
                                 <div class="buttons mt-3">
                                     <button id="startValheim" class="button is-success">Start</button>
                                     <button id="stopValeim" class="button is-danger">Stop</button>
@@ -52,7 +52,7 @@
                         <div class="container mt-5">
                             <h1 class="title">Minecraft</h1>
                             <div class="content">
-                                <p><strong>Status:</strong> placeholder<span></span></p>
+                                <p><strong>Status:</strong><span id="minecraftStatus">placeholder</span></p>
                                 <div class="buttons mt-3">
                                     <button id="startMinecraft" class="button is-success">Start</button>
                                     <button id="stopMinecraft" class="button is-danger">Stop</button>
@@ -102,10 +102,10 @@
                 </div>
                 <div class="columns">
                     <div class="column is-one-fourth info">
-                        <h1 class="subtitle">Live Player Counts (API Implementation)</h1>
-                        <p><strong>VRising:</strong><span id="vrsingPlayerCount"> 100</span>
-                        <p><strong>Valheim:</strong><span id="valheimPlayerCount"> <%= valheimPlayers %></span>
-                        <p><strong>Minecraft:</strong><span id="minecraftPlayerCount"> 100</span>
+                        <h1 class="subtitle">Live Player Counts</h1>
+                        <p><strong>VRising:</strong><span id="vrsingPlayerCount"> <%= vrisingPlayers %> Players Online</span>
+                        <p><strong>Valheim:</strong><span id="valheimPlayerCount"> <%= valheimPlayers %> Players Online</span>
+                        <p><strong>Minecraft:</strong><span id="minecraftPlayerCount"> <%= minecraftPlayers %></span>
                     </div>
                     <div class="column is-one-fourth info">
                         <h1 class="subtitle">VRising Game News (web scraping implementation)</h1>
@@ -119,6 +119,7 @@
                 </div>
             </div>
       </section>
+      <script src="js/controls.js"></script>
       <section class = "section" id="footer">
         <div class = "container has-text-centered">
             <span class = "subtitle">

@@ -1,25 +1,4 @@
-const axios = require('axios');
-const fs = require('fs');
-
 $(document).ready(function(){
-    const apiKeys = fs.readFileSync("steamkey.json", 'utf-8');
-    const steamApiKey = JSON.parse(apiKeys).steam_id;
-
-    const valheimAppId = 892970;
-    const vrisingAppId = 1604030;
-    // Steam Web API endpoint to get the number of players for a specific app
-    const steamApiEndpoint = `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${valheimAppId}&key=${steamApiKey}`;
-
-    // Make the HTTP request to the Steam Web API
-    axios.get(steamApiEndpoint)
-        .then(response => {
-            const valheimCurrentPlayers = response.data.response.player_count;
-            console.log(`Current number of players for Valheim: ${numberOfPlayers}`);
-        })
-        .catch(error => {
-            console.error('Error fetching player count:', error.message);
-        });
-    
     // game server control buttons
     var startVRisingBtn = $('#startVRising');
     var stopVRisingBtn = $('#stopVRising');
@@ -28,13 +7,31 @@ $(document).ready(function(){
     var startMinecraftBtn = $('#startMinecraft');
     var stopMinecraftBtn = $('#stopMinecraft');
 
-    // live game player count <span>s
-    var vrsingPlayerCount = $('#vrsingPlayerCount');
-    var valheimPlayerCount = $('#valheimPlayerCount');
-    var minecraftPlayerCount = $('#minecraftPlayerCount');
-    // set them to 0 for now
-    vrsingPlayerCount.text("0");
-    valheimPlayerCount.text(valheimCurrentPlayers);
-    minecraftPlayerCount.text("0");
+    var vrisingStatus = $('#vrisingStatus');
+    var valheimStatus = $('#valheimStatus');
+    var minecraftStatus = $('#minecraftStatus');
 
+    startMinecraftBtn.click(() => {
+        // Send a POST request to the server to run the specified script
+        fetch('/run-script', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ script: startMinecraft }),
+        })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+            minecraftStatus.text(" Running");
+        })
+        .catch(error => console.error('Error running script:', error));
+    });
+
+    stopMinecraftBtn.click(() => {
+        minecraftStatus.text(" Stopped");
+    });
+
+    function startServer(serverName) {
+    }
 });

@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const axios = require('axios');
 const fs = require('fs');
+const { exec } = require('child_process');
+const cheerio = require('cheerio');
 
 const apiKeys = fs.readFileSync("steamkey.json", 'utf-8');
 const steamApiKey = JSON.parse(apiKeys).steam_id;
@@ -61,22 +63,55 @@ app.post('/login', (req, res) => {
     }
 });
 
-app.get('/console', (req, res) => {
+const getSteamPlayerCount = async (apiEndpoint) => {
+    try {
+        const response = await axios.get(apiEndpoint);
+        return response.data.response.player_count;
+    } catch (error) {
+        console.error('Error fetching player count:', error.message);
+        return 'Error fetching player count';
+    }
+};
+
+async function scrapeMinecraftPlayerCount() {
+    const url = 'https://playercounter.com/minecraft/';
+    let response = await axios.get(url);
+    let $ = cheerio.load(response.data);
+    let count = $('.code-block.code-block-1').first().next().text();
+    return count;
+};
+
+app.get('/console', async (req, res) => {
     if (req.session.user) {
-        axios.get(valheimApiEndpoint)
-            .then(response => {
-                const valheimCurrentPlayers = response.data.response.player_count;
-                console.log(`Current number of players for Valheim: ${numberOfPlayers}`);
-            })
-            .catch(error => {
-                console.error('Error fetching player count:', error.message);
-            });
         let pageData = {
-            valheimPlayers: valheimCurrentPlayers
+            valheimPlayers: await getSteamPlayerCount(valheimApiEndpoint),
+            vrisingPlayers: await getSteamPlayerCount(vrisingApiEndpoint),
+            minecraftPlayers: await scrapeMinecraftPlayerCount()
         };
         res.render('console', pageData);
     } else {
         res.redirect('/');
+    }
+});
+
+app.post('/run-script', async (req, res) => {
+    try {
+        // Adjust this command to run your specific shell script
+        const scriptCommand = 'sh /path/to/your/test.sh';
+
+        exec(scriptCommand, (error, stdout, stderr) => {
+            if (error) {
+                console.error('Error executing script:', error.message);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+
+            console.log('Script executed successfully:', stdout);
+            res.status(200).send('Script executed successfully');
+        });
+    } catch (error) {
+        console.error('Error running script:', error.message);
+        res.status(500).send('Internal Server Error');
     }
 });
 
